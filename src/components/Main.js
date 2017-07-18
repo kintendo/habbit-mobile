@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import * as actions from '../lib/actions';
 import { initServices } from '../lib/init';
 import { getSession } from '../services/authService';
-// const HabbitContent = require('./HabbitContent');
+import HabbitContent from './HabbitContent';
 // const Nav = require('./Nav');
 const styles = StyleSheet.create({
   container: {
@@ -46,13 +46,13 @@ class Main extends Component {
           // <div className='main'>
           //     <h1>Habbit</h1>
           //     {uid ? <Nav /> : null}
-          //     <HabbitContent view={view} />
+          //
           // </div>
           <View style={styles.container}>
-            <Text>Open up App.js to start working on your app!</Text>
+            <Text>Habbit</Text>
             <Text>Changes you make will automatically reload.</Text>
             <Text>Shake your phone to open the developer menu.</Text>
-            <Text>{ view }</Text>
+            <HabbitContent view={view} />
           </View>
       );
   }

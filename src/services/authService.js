@@ -1,29 +1,34 @@
 'use strict';
 
-const {firebase} = require('./firebaseService');
+import { firebase } from './firebaseService';
 const auth = firebase.auth();
 
-function facebookLogin(callback) {
-    const facebookProvider = new firebase.auth.FacebookAuthProvider();
-    facebookProvider.addScope('user_friends');
-    return auth.signInWithPopup(facebookProvider).then( ({user}) => {
+function emailSignup(email, password) {
+  return auth.createUserWithEmailAndPassword(email, password)
+  .then((result) => {
+    return Promise.resolve(result);
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  })
+}
 
-        // TODO: use token to access & store friends list
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        // var token = credential.accessToken;
-
-        const fbUser = user.providerData[0];
-        callback({
-            uid: user.uid,
-            facebook_id: fbUser.uid,
-            email: fbUser.email,
-            photo: fbUser.photoURL
-        });
-    });
+function emailLogin(email, password) {
+  return auth.signInWithEmailAndPassword(email, password)
+  .then((result) => {
+    return Promise.resolve(result);
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  })
 }
 
 function getSession(callback) {
-    return auth.onAuthStateChanged(callback);
+  return auth.onAuthStateChanged(callback);
 }
 
-module.exports = {facebookLogin, getSession};
+module.exports = {getSession, emailLogin, emailSignup};
