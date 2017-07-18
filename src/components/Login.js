@@ -10,8 +10,6 @@ import { Text, Button, View, TextInput } from 'react-native';
 
 class Login extends Component {
 
-
-
   constructor(props) {
     super(props);
     this.initializeUser = this.initializeUser.bind(this);
@@ -19,8 +17,8 @@ class Login extends Component {
     this.handleEmailSignup = this.handleEmailSignup.bind(this);
 
     this.state = {
-      email: '',
-      password: '',
+      email: 'kinthai+habbit@gmail.com',
+      password: 'Friends',
     };
   }
 
@@ -33,6 +31,7 @@ class Login extends Component {
     emailLogin(this.state.email, this.state.password)
     .then((res) => {
       console.log('RESPONSE', JSON.stringify(res));
+      this.props.setUserId(res.uid);
     });
   }
 
@@ -40,6 +39,7 @@ class Login extends Component {
     emailSignup(this.state.email, this.state.password)
     .then((res) => {
       console.log('RESPONSE', JSON.stringify(res));
+      this.props.setUserId(res.uid);
     });
   }
 

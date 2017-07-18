@@ -7,7 +7,7 @@ import * as actions from '../lib/actions';
 import { initServices } from '../lib/init';
 import { getSession } from '../services/authService';
 import HabbitContent from './HabbitContent';
-// const Nav = require('./Nav');
+import Nav from './Nav';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -40,21 +40,15 @@ class Main extends Component {
   }
 
   render() {
-      const {view, uid} = this.props;
+    const {view, uid} = this.props;
 
-      return (
-          // <div className='main'>
-          //     <h1>Habbit</h1>
-          //     {uid ? <Nav /> : null}
-          //
-          // </div>
-          <View style={styles.container}>
-            <Text>Habbit</Text>
-            <Text>Changes you make will automatically reload.</Text>
-            <Text>Shake your phone to open the developer menu.</Text>
-            <HabbitContent view={view} />
-          </View>
-      );
+    return (
+      <View style={styles.container}>
+        <Text>Habbit</Text>
+        { uid ? <Nav /> : null }
+        <HabbitContent view={view} />
+      </View>
+    );
   }
 }
 
